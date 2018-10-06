@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbouchez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/04 17:43:24 by nbouchez          #+#    #+#             */
-/*   Updated: 2018/10/04 18:49:35 by nbouchez         ###   ########.fr       */
+/*   Created: 2018/10/06 21:10:43 by nbouchez          #+#    #+#             */
+/*   Updated: 2018/10/06 21:10:44 by nbouchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int	ft_strequ(char const *s1, char const *s2)
 {
-	char *tmpdest;
-	char *tmpsrc;
-
-	if (n == 0 || dest == src)
-		return (dest);
-	tmpsrc = (char*)src;
-	tmpdest = (char*)dest;
-	while (*tmpsrc != '\0' && n > 0)
+	while (*s1 != '\0' && *s2 != '\0')
 	{
-		*tmpdest = *tmpsrc;
-		tmpsrc++;
-		tmpdest++;
-		n--;
+		if (*s1 != *s2)
+			return (0);
+		s1++;
+		s2++;
 	}
-	return (dest);
+	return (1);
 }

@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbouchez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/04 17:43:24 by nbouchez          #+#    #+#             */
-/*   Updated: 2018/10/04 18:49:35 by nbouchez         ###   ########.fr       */
+/*   Created: 2018/10/06 19:21:11 by nbouchez          #+#    #+#             */
+/*   Updated: 2018/10/06 19:21:12 by nbouchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+char	*ft_strnstr(const char *str, const char *to_find, size_t n)
 {
-	char *tmpdest;
-	char *tmpsrc;
+	char *to_find_tmp;
+	char *str_tmp;
 
-	if (n == 0 || dest == src)
-		return (dest);
-	tmpsrc = (char*)src;
-	tmpdest = (char*)dest;
-	while (*tmpsrc != '\0' && n > 0)
+	while (*str != '\0' && n > 0)
 	{
-		*tmpdest = *tmpsrc;
-		tmpsrc++;
-		tmpdest++;
+		str_tmp = (char*)str;
+		to_find_tmp = (char*)to_find;
+		while (*to_find_tmp == *str_tmp || *to_find_tmp == '\0')
+		{
+			if (*to_find_tmp == '\0')
+			{
+				return ((char*)str);
+			}
+			to_find_tmp++;
+			str_tmp++;
+			n--;
+		}
+		str++;
 		n--;
 	}
-	return (dest);
+	if (*to_find == '\0')
+		return ((char*)str);
+	return ((void*)0);
 }

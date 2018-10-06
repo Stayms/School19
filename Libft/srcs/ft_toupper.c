@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbouchez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/04 17:43:24 by nbouchez          #+#    #+#             */
-/*   Updated: 2018/10/04 18:49:35 by nbouchez         ###   ########.fr       */
+/*   Created: 2018/10/06 18:39:54 by nbouchez          #+#    #+#             */
+/*   Updated: 2018/10/06 18:39:55 by nbouchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int	ft_toupper(int c)
 {
-	char *tmpdest;
-	char *tmpsrc;
-
-	if (n == 0 || dest == src)
-		return (dest);
-	tmpsrc = (char*)src;
-	tmpdest = (char*)dest;
-	while (*tmpsrc != '\0' && n > 0)
-	{
-		*tmpdest = *tmpsrc;
-		tmpsrc++;
-		tmpdest++;
-		n--;
-	}
-	return (dest);
+	if (c >= 'a' && c <= 'z')
+		c = c - 32;
+	return (c);
 }
