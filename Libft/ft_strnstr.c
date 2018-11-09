@@ -11,12 +11,14 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-char	*ft_strnstr(const char *str, const char *to_find, size_t n)
+char		*ft_strnstr(const char *str, const char *to_find, size_t n)
 {
-	char *to_find_tmp;
-	char *str_tmp;
-	long n2;
+	char	*to_find_tmp;
+	char	*str_tmp;
+	long	n2;
+	int		n2_tmp;
 
 	n2 = (long)n;
 	to_find_tmp = (char*)to_find;
@@ -24,18 +26,18 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t n)
 	{
 		str_tmp = (char*)str;
 		to_find_tmp = (char*)to_find;
+		n2_tmp = 0;
 		while ((*to_find_tmp == *str_tmp || *to_find_tmp == '\0') && n2 >= 0)
 		{
 			if (*to_find_tmp == '\0')
-			{
 				return ((char*)str);
-			}
 			to_find_tmp++;
 			str_tmp++;
 			n2--;
+			n2_tmp++;
 		}
+		n2 = n2 + n2_tmp - 1;
 		str++;
-		n2--;
 	}
 	return ((void*)0);
 }
