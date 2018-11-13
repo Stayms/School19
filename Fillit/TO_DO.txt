@@ -1,0 +1,10 @@
+Lecture du fichier :
+
+1.Verifier si le fichier est valide 
+a.Lire les 4 prochaines lignes
+b.Verifier la longueur des lignes
+c.Verifier qu'elles possedent 4x# et 12x.
+
+2.Verifier si les formes sont correctes
+a.Checker chaque coord -> Total de connexion pour une piece valide : 6 ou 8
+
