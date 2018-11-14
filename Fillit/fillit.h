@@ -12,10 +12,12 @@
 
 #ifndef FILLIT_H
 # define FILLIT_H
+# define BUFF_SIZE 560
 # include "libft/libft.h"
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
+# include <stdio.h> // TO DELET
 
 typedef	struct		s_coord
 {
@@ -23,12 +25,6 @@ typedef	struct		s_coord
 	int				y;
 }					t_coord;
 
-typedef	struct		s_piece
-{
-	t_coord			origin;
-	t_coord			coord[4];
-}					t_piece;
-
-t_piece read_in(const char *file_name);
+t_coord *read_in(const char *file_name);
 
 #endif

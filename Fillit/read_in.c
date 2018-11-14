@@ -12,15 +12,23 @@
 
 #include "fillit.h"
 #include <stdio.h>
+#include <fcntl.h>
 
-t_piece read_in(const char *file_name)
+t_coord *read_in(const char *file_name)
 {
+	static t_coord tab[26][3];
 	int fd;
-	char *line
-	fd = open(file_name, O_RDONLY);
-	while (get_next_line(fd, &line) == 1)
+	char *line;
+	char tab_tmp[546 + 1];
+
+	if((fd = open(file_name, O_RDONLY)) == 0)
+		return ((t_coord*)NULL);
+	if(read(fd, tab_tmp, BUFF_SIZE) > 545)
+	    return ((t_coord*)NULL);
+	else
 	{
-	    free(line);
-	    line = NULL;
+		printf("OK");
 	}
+	return (NULL);
+
 }
