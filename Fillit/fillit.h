@@ -23,6 +23,8 @@ typedef	struct		s_coord
 {
 	int				x;
 	int				y;
+	int				etat;
+	char			lettre;
 }					t_coord;
 
 t_coord *read_in(const char *file_name);
