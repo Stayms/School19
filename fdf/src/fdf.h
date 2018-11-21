@@ -13,3 +13,5 @@
 #include "../minilibx_macos/mlx.h"
 
 
+int draw_line(int x0, int y0, int x1, int y1, void *mxl_ptr, void *win_ptr);
+void draw_iso(int *map, void *mxl_ptr, void *win_ptr);
