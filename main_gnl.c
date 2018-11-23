@@ -16,7 +16,7 @@ int main()
 	char *line;
 
     system("mkdir -p sandbox");
-	system("openssl rand -out sandbox/large_file.txt -base64 $((50 * 100000000 * 3/4)) 2> /dev/null");
+	system("openssl rand -out sandbox/large_file.txt -base64 $((50 * 1000 * 3/4)) 2> /dev/null");
 	fd = open("sandbox/large_file.txt", O_RDONLY);
 	while (get_next_line(fd, &line) == 1)
 	{
