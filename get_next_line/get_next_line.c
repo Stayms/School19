@@ -69,23 +69,3 @@ int				get_next_line(const int fd, char **line)
 	*line = ptab;
 	return (1);
 }
-
-/*
-int main()
-{
-	int i, fd;
-	char *line;
-
-    system("mkdir -p sandbox");
-	system("openssl rand -out sandbox/large_file.txt -base64 $((50 * 100000000 * 3/4)) 2> /dev/null");
-	fd = open("sandbox/large_file.txt", O_RDONLY);
-	while (get_next_line(fd, &line) == 1)
-	{
-	    //write(1, line, strlen(line));
-	    //write(1, "\n", 1);
-	    free(line);
-	    line = NULL;
-	}
-	return 0;
-}
-*/
