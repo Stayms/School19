@@ -19,7 +19,7 @@ int draw_line(int x0, int y0, int x1, int y1, void *mxl_ptr, void *win_ptr)
 	int dx;
 	int sx;
 	int dy;
-	int sy; 
+	int sy;
 	int err;
 	int e2;
 
@@ -31,7 +31,7 @@ int draw_line(int x0, int y0, int x1, int y1, void *mxl_ptr, void *win_ptr)
  
 	while(1)
 	{
-		mlx_pixel_put(mxl_ptr, win_ptr, x0, y0, 16777215);
+		mlx_pixel_put(mxl_ptr, win_ptr, x0 + PADDINGX, y0 + PADDINGY, 16777215);
 		printf("Point : %d, %d\n", x0, y0);
 		if (x0 == x1 && y0 == y1) 
 			break;

@@ -33,7 +33,7 @@ static	char	*copy_word(char *src, char c)
 	return (output);
 }
 
-static	int		count_words(char *str, char c)
+static	int		count_words(char *str, char c, int *word)
 {
 	int i;
 	int count;
@@ -51,10 +51,11 @@ static	int		count_words(char *str, char c)
 		else
 			i++;
 	}
+	*word = count;
 	return (count + 1);
 }
 
-extern	char	**ft_strsplit(char const *s, char c)
+extern	char	**ft_strsplit(char const *s, char c, int *word)
 {
 	char	**output;
 	int		i;
@@ -63,7 +64,7 @@ extern	char	**ft_strsplit(char const *s, char c)
 
 	if (!(s2 = (char*)s))
 		return (NULL);
-	if (!(output = malloc(sizeof(char*) * count_words(s2, c))))
+	if (!(output = malloc(sizeof(char*) * count_words(s2, c, word))))
 		return (NULL);
 	x = 0;
 	i = 0;

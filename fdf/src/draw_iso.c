@@ -12,44 +12,36 @@
 
 #include "fdf.h"
 
-void draw_iso(int *map, void *mxl_ptr, void *win_ptr)
+void draw_iso(int *map, void *mxl_ptr, void *win_ptr, int sizex, int sizey)
 {
 	int x;
 	int y;
-	int i;
 	int size_tuile;
-	int originx;
-	int originy;
+	float zoom;
 
-	originx = 20;
-	originy = 20;
-	i = 0;
-	x = 0;
+	zoom = 0.3;
 	y = 0;
-	size_tuile = 100;
+	size_tuile = (sizex > sizey ? SCREENSIZE/sizex : SCREENSIZE/sizey)*zoom;
 
-
-	while(y < 4)
+	while(y < sizex + 1)
 	{
 		x = 0;
-		while(x < 4)
+		while(x < sizey + 1)
 		{
-			if (y == 3)
-				draw_line(originx + x * size_tuile, originy + (y + 1) * size_tuile, originx + (x + 1) * size_tuile, originy + (y + 1) * size_tuile, mxl_ptr, win_ptr);
-			draw_line(originx + x * size_tuile, originy + y * size_tuile, originx + (x + 1) * size_tuile, originy + y * size_tuile, mxl_ptr, win_ptr);
-			draw_line(originx + x * size_tuile, originy + y * size_tuile, originx + x * size_tuile, originy + (y + 1) * size_tuile, mxl_ptr, win_ptr);
+			if(y != sizey)
+			{
+				draw_line(((x - y) * cos(ROTATION)) * size_tuile, ((y + x) * sin(ROTATION)) * size_tuile,
+				((x - (y + 1)) * cos(ROTATION)) * size_tuile, (((y + 1) + x) * sin(ROTATION)) * size_tuile,
+				mxl_ptr, win_ptr);
+			}
+			if(x != sizex)
+			{
+				draw_line(((x - y) * cos(ROTATION)) * size_tuile, ((y + x) * sin(ROTATION)) * size_tuile,
+				(((x + 1) - y) * cos(ROTATION)) * size_tuile, ((y + x + 1) * sin(ROTATION)) * size_tuile,
+				mxl_ptr, win_ptr);
+			}
 			x++;
 		}
-		draw_line(originx + x * size_tuile, originy + y * size_tuile, originx + x * size_tuile, originy + (y + 1) * size_tuile, mxl_ptr, win_ptr);
 		y++;
 	}
-}
-
-void draw_all_lines()
-{
-
-
-
-
-
 }

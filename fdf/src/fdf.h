@@ -10,8 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minilibx_macos/mlx.h"
 
+#ifndef FDF_H
+# define FDF_H
+# define SCREENSIZE 1300
+# define PADDINGX 400
+# define PADDINGY 400
+# define ROTATION 13
+# include "../minilibx_macos/mlx.h"
+# include "../get_next_line/get_next_line.h"
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <math.h>
 
+int count_point(char *v_tmp_split);
 int draw_line(int x0, int y0, int x1, int y1, void *mxl_ptr, void *win_ptr);
-void draw_iso(int *map, void *mxl_ptr, void *win_ptr);
+void draw_iso(int *map, void *mxl_ptr, void *win_ptr, int sizex, int sizey);
+
+#endif
