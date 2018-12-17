@@ -75,7 +75,7 @@ char				*ft_strtrim(char const *s);
 void				ft_bzero(void *s, size_t n);
 int					ft_atoi(const char *str);
 char				*ft_itoa(int n);
-char				**ft_strsplit(char const *s, char c, int *word);
+char				**ft_strsplit(char const *s, char c);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstadd(t_list **alst, t_list *new);

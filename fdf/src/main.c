@@ -14,15 +14,25 @@
 
 int	main(int ac, char **av)
 {
-	void	*mxl_ptr;
+	void	*mlx_ptr;
 	void	*win_ptr;
-	int		fd;
-	int map[0][0];
+	void	*img_ptr;
+	int		*map;
+	int		x;
+	int		y;
 
-
-	mxl_ptr = mlx_init();
-	win_ptr = mlx_new_window(mxl_ptr, SCREENSIZE, SCREENSIZE, "FdF School 19");
-	draw_iso(&map[0][0], mxl_ptr, win_ptr, 10, 10);
-	mlx_loop(mxl_ptr);
+	if (ac == 2)
+	{
+		if (!(map = reader(av[1], &x, &y)))
+			return (-1);
+	}
+		else
+			return (-1);
+	mlx_ptr = mlx_init();
+	win_ptr = mlx_new_window(mlx_ptr, SCREENSIZE, SCREENSIZE, "FdF School 19");
+	menu_manager(mlx_ptr, win_ptr);
+	scene_manager(mlx_ptr, win_ptr, map, x, y);
+	//mlx_put_image_to_window (mlx_ptr, win_ptr, img_ptr, 0, 0);
+	mlx_loop(mlx_ptr);
 	return (0);
 }

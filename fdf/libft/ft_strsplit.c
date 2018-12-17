@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 static	char	*copy_word(char *src, char c)
@@ -33,7 +32,7 @@ static	char	*copy_word(char *src, char c)
 	return (output);
 }
 
-static	int		count_words(char *str, char c, int *word)
+static	int		count_words(char *str, char c)
 {
 	int i;
 	int count;
@@ -51,11 +50,10 @@ static	int		count_words(char *str, char c, int *word)
 		else
 			i++;
 	}
-	*word = count;
 	return (count + 1);
 }
 
-extern	char	**ft_strsplit(char const *s, char c, int *word)
+extern	char	**ft_strsplit(char const *s, char c)
 {
 	char	**output;
 	int		i;
@@ -64,7 +62,7 @@ extern	char	**ft_strsplit(char const *s, char c, int *word)
 
 	if (!(s2 = (char*)s))
 		return (NULL);
-	if (!(output = malloc(sizeof(char*) * count_words(s2, c, word))))
+	if (!(output = malloc(sizeof(char*) * count_words(s2, c))))
 		return (NULL);
 	x = 0;
 	i = 0;

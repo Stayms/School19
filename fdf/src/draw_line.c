@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int draw_line(int x0, int y0, int x1, int y1, void *mxl_ptr, void *win_ptr) 
+int draw_line(int x0, int y0, int x1, int y1, int *image)
 {
 	int dx;
 	int sx;
@@ -22,6 +22,7 @@ int draw_line(int x0, int y0, int x1, int y1, void *mxl_ptr, void *win_ptr)
 	int sy;
 	int err;
 	int e2;
+	int *img_tmp;
 
 	dx = abs(x1 - x0);
 	sx = x0 < x1 ? 1 : -1;
@@ -31,8 +32,10 @@ int draw_line(int x0, int y0, int x1, int y1, void *mxl_ptr, void *win_ptr)
  
 	while(1)
 	{
-		mlx_pixel_put(mxl_ptr, win_ptr, x0 + PADDINGX, y0 + PADDINGY, 16777215);
-		printf("Point : %d, %d\n", x0, y0);
+		img_tmp = image + (x0 + PADDINGX) + ((y0 + PADDINGY) * (SCREENSIZE/4)*3);
+		*img_tmp = 255;
+		//mlx_pixel_put(mxl_ptr, win_ptr, x0 + PADDINGX, y0 + PADDINGY, 16777215);
+		//printf("Point : %d, %d\n", x0, y0);
 		if (x0 == x1 && y0 == y1) 
 			break;
 		e2 = err;

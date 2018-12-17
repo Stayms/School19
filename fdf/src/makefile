@@ -13,7 +13,7 @@
 NAME = fdf
 INCLUDE = minilibx/mlx.h
 SOURCE = 
-SOURCE_FILE = main.c draw_line.c draw_iso.c reader.c ../libft/libft.a ../get_next_line/get_next_line.c
+SOURCE_FILE = main.c color_img.c menu.c scene_manager.c draw_line.c draw_iso.c reader.c ../libft/libft.a ../get_next_line/get_next_line.c
 
 all: $(NAME)
 

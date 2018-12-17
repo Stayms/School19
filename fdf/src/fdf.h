@@ -14,9 +14,11 @@
 #ifndef FDF_H
 # define FDF_H
 # define SCREENSIZE 1300
-# define PADDINGX 400
-# define PADDINGY 400
-# define ROTATION 13
+# define PADDINGX 200
+# define PADDINGY 200
+# define ROTATION 0.509066
+# define ZOOM 0.3
+# define MULTIPLICATION 3
 # include "../minilibx_macos/mlx.h"
 # include "../get_next_line/get_next_line.h"
 # include <fcntl.h>
@@ -24,9 +26,14 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
+# define HOME_COLOR 100
 
 int count_point(char *v_tmp_split);
-int draw_line(int x0, int y0, int x1, int y1, void *mxl_ptr, void *win_ptr);
-void draw_iso(int *map, void *mxl_ptr, void *win_ptr, int sizex, int sizey);
+int draw_line(int x0, int y0, int x1, int y1, int *image);
+void color_img(void *img_ptr, int sizex, int sizey, int color);
+void menu_manager(void *mlx_ptr, void *win_ptr);
+void scene_manager(void *mlx_ptr, void *win_ptr, int *map, int x, int y);
+void draw_iso(int *map, int *image, int sizex, int sizey);
+int	*reader(char *file, int *x, int *y);
 
 #endif
