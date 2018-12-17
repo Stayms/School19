@@ -26,7 +26,7 @@ void scene_manager(void *mlx_ptr, void *win_ptr, int *map, int x, int y)
 	image = (int*)mlx_get_data_addr(img_ptr, &bits_per_pixel, &size_line, &endian);
 
 	draw_iso(map, image, x, y);
-	mlx_put_image_to_window (mlx_ptr, win_ptr, img_ptr, SCREENSIZE/4, 0);
+	mlx_put_image_to_window (mlx_ptr, win_ptr, img_ptr, 0, 0);
 
 
 }

@@ -17,8 +17,8 @@
 # define PADDINGX 200
 # define PADDINGY 200
 # define ROTATION 0.509066
-# define ZOOM 0.3
-# define MULTIPLICATION 3
+# define ZOOM 1
+# define MULTIPLICATION 0.001
 # include "../minilibx_macos/mlx.h"
 # include "../get_next_line/get_next_line.h"
 # include <fcntl.h>

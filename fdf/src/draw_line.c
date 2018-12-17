@@ -30,10 +30,15 @@ int draw_line(int x0, int y0, int x1, int y1, int *image)
 	sy = y0<y1 ? 1 : -1; 
 	err = (dx > dy ? dx : -dy)/2;
  
-	while(1)
+	while(19)
 	{
-		img_tmp = image + (x0 + PADDINGX) + ((y0 + PADDINGY) * (SCREENSIZE/4)*3);
-		*img_tmp = 255;
+		if(x0 + PADDINGX < (SCREENSIZE/4)*3 && x0 + PADDINGX > 0)
+			if((y0 + PADDINGY) * (SCREENSIZE/4)*3 < (SCREENSIZE/4)*3 * SCREENSIZE && y0 + PADDINGY > 0 )
+				{
+				//printf("%d , %d\n", x0 + PADDINGX, (y0 + PADDINGY) * (SCREENSIZE/4)*3);
+				img_tmp = image + (x0 + PADDINGX) + ((y0 + PADDINGY) * (SCREENSIZE/4)*3);
+				*img_tmp = 255;
+			}
 		//mlx_pixel_put(mxl_ptr, win_ptr, x0 + PADDINGX, y0 + PADDINGY, 16777215);
 		//printf("Point : %d, %d\n", x0, y0);
 		if (x0 == x1 && y0 == y1) 

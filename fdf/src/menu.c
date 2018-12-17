@@ -18,6 +18,6 @@ void menu_manager(void *mlx_ptr, void *win_ptr)
 
 	img_ptr = mlx_new_image (mlx_ptr, SCREENSIZE/4, SCREENSIZE);
 	color_img(img_ptr, SCREENSIZE/4, SCREENSIZE , HOME_COLOR);
-	mlx_put_image_to_window (mlx_ptr, win_ptr, img_ptr, 0, 0);
+	mlx_put_image_to_window (mlx_ptr, win_ptr, img_ptr, (SCREENSIZE/4) * 3, 0);
 
 }

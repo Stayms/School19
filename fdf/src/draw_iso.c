@@ -16,11 +16,12 @@ void draw_iso(int *map, int *image, int sizex, int sizey)
 {
 	int x;
 	int y;
-	int size_tuile;
+	float size_tuile;
 
 	y = 0;
-	size_tuile = (sizex > sizey ? SCREENSIZE/sizex : SCREENSIZE/sizey)*ZOOM;
-
+	size_tuile = (sizex > sizey ? (float)((SCREENSIZE/4)*3)/sizex : (float)((SCREENSIZE/4)*3)/sizey)*ZOOM;
+	printf("size x : %d, size y : %d - > Size tuile : %f\n", sizex, sizey, size_tuile);
+	//size_tuile = (sizex > sizey ? ((SCREENSIZE/4)*3)/sizex : ((SCREENSIZE/4)*3)/sizey)*ZOOM;
 	while(y < sizey)
 	{
 		x = 0;
