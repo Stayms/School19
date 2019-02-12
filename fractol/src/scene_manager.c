@@ -20,8 +20,8 @@ void scene_manager(t_data *data)
 	int 	size_line;
 	int 	endian;
 
-	img_ptr = mlx_new_image (data->mlx_ptr, SCREENSIZE, SCREENSIZE);
-	data->map = (int*)mlx_get_data_addr(img_ptr, &bits_per_pixel, &size_line, &endian);
+	img_ptr = mlx_new_image(data->mlx_ptr, SCREENSIZE, SCREENSIZE);
+	data->map.map = (int*)mlx_get_data_addr(img_ptr, &bits_per_pixel, &size_line, &endian);
 
 	// Modification de l'image
 	draw_mandelbrot(data);

@@ -21,38 +21,32 @@ void draw_mandelbrot(t_data *data)
 	int i;
 	double tmp;
 
-	int interation_max = 50;
-	double x_min = -2.1;
-	double x_max = 0.6;
-	double y_min = -1.2;
-	double y_max = 1.2;
-	double zoom = 100;
-
-	double image_x = (x_max - x_min) * zoom;
-	double image_y = (y_max - y_min) * zoom;
-
 	y = 0;
-	while(y < image_y)
+	while(y < data->map.image_y)
 	{
 		x = 0;
-		while(x < image_x)
+		while(x < data->map.image_x)
 		{
-			c.r = x / zoom + x_min;
-			c.i = y / zoom + y_min;
+			c.r = x / data->map.zoom_x + data->map.x_min;
+			c.i = y / data->map.zoom_y + data->map.y_min;
 			z.r = 0;
 			z.i = 0;
 			i = 0;
 
-			while(z.r * z.r + z.i * z.i < 4 && i < interation_max)
+			while(z.r * z.r + z.i * z.i < 4 && i < data->map.scale)
 			{
 				tmp = z.r;
 				z.r = z.r * z.r - z.i * z.i + c.r;
 				z.i = 2 * z.i * tmp + c.i;
 				i++;
 			}
-			if(i == interation_max)
+			if(i == data->map.scale)
 			{
-				draw_point(x, y, data);
+				draw_point(x, y, data, 0);
+			}
+			else
+			{
+				draw_point(x, y, data, i * 255/data->map.scale);
 			}
 
 			x++;

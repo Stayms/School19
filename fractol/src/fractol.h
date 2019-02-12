@@ -32,18 +32,37 @@ typedef struct 		s_complex
 	double	i;			
 }					t_complex;
 
+typedef struct		s_map
+{
+	int		zoom;
+	int		*map;
+	int		offset_x;
+	int		offset_y;
+	double	scale;
+	double	x_min;
+	double	x_max;
+	double	y_min;
+	double	y_max;
+	double image_x;
+	double image_y;
+	double zoom_x;
+	double zoom_y;
+	double color;
+}					t_map;
 
 typedef struct		s_data
 {
 	int		id;
 	void	*mlx_ptr;
 	void	*win_ptr;
-	int		*map;
+	t_map	map;
 }					t_data;
 
 int draw_line(int x0, int y0, int x1, int y1, int *image);
 void scene_manager(t_data *data);
 void draw_mandelbrot(t_data *data);
-int draw_point(int x, int y, t_data *data);
+int draw_point(int x, int y, t_data *data, int color);
+void zoomin(t_data *data);
+void zoomout(t_data *data);
 
 #endif

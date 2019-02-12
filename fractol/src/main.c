@@ -12,8 +12,34 @@
 
 #include "fractol.h"
 
+void set_value(t_data *data)
+{
+	data->map.zoom = 6;
+	data->map.offset_x = PADDINGX;
+	data->map.offset_y = PADDINGY;
+	data->map.scale = 20;
+	data->map.x_min = -2.1;
+	data->map.x_max = 0.6;
+	data->map.y_min = -1.2;
+	data->map.y_max = 1.2;
+	data->map.image_x = 270 * data->map.zoom;
+	data->map.image_y = 240 * data->map.zoom;
+	data->map.zoom_x = data->map.image_x/(data->map.x_max - data->map.x_min);
+	data->map.zoom_y = data->map.image_y/(data->map.y_max - data->map.y_min);
+	data->map.color = 0;
+}
+
+
 int deal_key(int key, t_data *param)
 {
+	if(key == 69 || key == 78)
+	{
+		if(key == 69)
+			zoomin(param);
+		else if(key == 78)
+			zoomout(param);
+		scene_manager(param);
+	}
 	return (0);
 }
 
@@ -21,6 +47,7 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
+	set_value(&data);
 	if (ac == 2)
 	{
 		if (!ft_strcmp(av[1], "Mandelbrot") || !ft_strcmp(av[1], "Julia"))
