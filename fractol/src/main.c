@@ -14,7 +14,9 @@
 
 void set_value(t_data *data)
 {
-	data->map.zoom = 6;
+	double zoom;
+
+	zoom = (double)SCREENSIZE / 230;
 	data->map.offset_x = PADDINGX;
 	data->map.offset_y = PADDINGY;
 	data->map.scale = 20;
@@ -22,24 +24,32 @@ void set_value(t_data *data)
 	data->map.x_max = 0.6;
 	data->map.y_min = -1.2;
 	data->map.y_max = 1.2;
-	data->map.image_x = 270 * data->map.zoom;
-	data->map.image_y = 240 * data->map.zoom;
+	data->map.image_x = (int)270 * zoom;
+	data->map.image_y = (int)240 * zoom;
 	data->map.zoom_x = data->map.image_x/(data->map.x_max - data->map.x_min);
 	data->map.zoom_y = data->map.image_y/(data->map.y_max - data->map.y_min);
 	data->map.color = 0;
+	data->map.quality = 0.5;
 }
 
 
 int deal_key(int key, t_data *param)
 {
-	if(key == 69 || key == 78)
-	{
-		if(key == 69)
-			zoomin(param);
-		else if(key == 78)
-			zoomout(param);
-		scene_manager(param);
-	}
+	printf("Key : %d\n", key);
+	if(key == 69)
+		zoomin(param);
+	else if(key == 78)
+		zoomout(param);
+	else if(key == 75) // Scale - (/)
+		scaleout(param);
+	else if(key == 67) // Scale + (*)
+		scalein(param);
+	else if(key == 123 || key == 126 || key == 125 || key == 124) // Mouvement (fleches)
+		move(param, key);
+	else if(key == 12) // Quality - (q)
+		quality_change(param);
+
+	scene_manager(param);
 	return (0);
 }
 

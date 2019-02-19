@@ -20,8 +20,8 @@ void zoomin(t_data *data)
 	data->map.x_max = data->map.x_max - 0.05;
 	data->map.y_min = data->map.y_min + 0.05;
 	data->map.y_max = data->map.y_max - 0.05;
-	data->map.image_x = 270 * data->map.zoom;
-	data->map.image_y = 240 * data->map.zoom;
+	//data->map.image_x = 270 * data->map.zoom;
+	//data->map.image_y = 240 * data->map.zoom;
 	data->map.zoom_x = data->map.image_x/(data->map.x_max - data->map.x_min);
 	data->map.zoom_y = data->map.image_y/(data->map.y_max - data->map.y_min);
 	printf("ZoomIn : %f\n", data->map.scale);
@@ -34,14 +34,26 @@ void zoomout(t_data *data)
 	data->map.x_max += 0.05;
 	data->map.y_min -= 0.05;
 	data->map.y_max += 0.05;
-	data->map.image_x = 270 * data->map.zoom;
-	data->map.image_y = 240 * data->map.zoom;
+	//data->map.image_x = 270 * data->map.zoom;
+	//data->map.image_y = 240 * data->map.zoom;
 	data->map.zoom_x = data->map.image_x/(data->map.x_max - data->map.x_min);
 	data->map.zoom_y = data->map.image_y/(data->map.y_max - data->map.y_min);
 	printf("ZoomOut %f\n", data->map.scale);
 }
 
+void scalein(t_data *data)
+{
+	data->map.scale += 1;
+	printf("Scale : %f\n", data->map.scale);
+}
+
+void scaleout(t_data *data)
+{
+	data->map.scale -= 1;
+	printf("Scale : %f\n", data->map.scale);
+}
+
 void offset(t_data *data)
 {
-
+	
 }

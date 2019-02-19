@@ -22,13 +22,13 @@ void draw_mandelbrot(t_data *data)
 	double tmp;
 
 	y = 0;
-	while(y < data->map.image_y)
+	while(y < SCREENSIZE)
 	{
 		x = 0;
-		while(x < data->map.image_x)
+		while(x < SCREENSIZE)
 		{
-			c.r = x / data->map.zoom_x + data->map.x_min;
-			c.i = y / data->map.zoom_y + data->map.y_min;
+			c.r = (x + data->map.offset_x) / data->map.zoom_x + data->map.x_min;
+			c.i = (y + data->map.offset_y) / data->map.zoom_y + data->map.y_min;
 			z.r = 0;
 			z.i = 0;
 			i = 0;
@@ -41,16 +41,11 @@ void draw_mandelbrot(t_data *data)
 				i++;
 			}
 			if(i == data->map.scale)
-			{
 				draw_point(x, y, data, 0);
-			}
 			else
-			{
 				draw_point(x, y, data, i * 255/data->map.scale);
-			}
-
-			x++;
+			x = x + 1 / data->map.quality;
 		}
-		y++;
+		y = y + 1 / data->map.quality;
 	}
 }
