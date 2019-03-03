@@ -13,7 +13,7 @@
 NAME = fractol
 INCLUDE = minilibx/mlx.h
 SOURCE = 
-SOURCE_FILE = main.c scene_manager.c draw_point.c binding1.c binding2.c maps/mandelbrot.c ../libft/libft.a ../get_next_line/get_next_line.c
+SOURCE_FILE = main.c scene_manager.c draw_point.c binding1.c binding2.c maps/mandelbrot.c maps/julia.c ../libft/libft.a ../get_next_line/get_next_line.c
 
 all: $(NAME)
 

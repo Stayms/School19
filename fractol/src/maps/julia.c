@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbouchez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/12 16:49:30 by nbouchez          #+#    #+#             */
-/*   Updated: 2019/02/12 16:49:31 by nbouchez         ###   ########.fr       */
+/*   Created: 2019/03/03 06:21:57 by nbouchez          #+#    #+#             */
+/*   Updated: 2019/03/03 06:21:58 by nbouchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-void draw_mandelbrot(t_data *data)
+void draw_julia(t_data *data)
 {
 	t_complex c;
 	t_complex z;

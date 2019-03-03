@@ -12,48 +12,36 @@
 
 #include "fractol.h"
 
-void zoomin(t_data *data)
+void zoomin(t_data *data, int x, int y)
 {
-	data->map.scale += 0.5;
-	//data->map.zoom += 0.6;
-	data->map.x_min = data->map.x_min + 0.05;
-	data->map.x_max = data->map.x_max - 0.05;
-	data->map.y_min = data->map.y_min + 0.05;
-	data->map.y_max = data->map.y_max - 0.05;
-	//data->map.image_x = 270 * data->map.zoom;
-	//data->map.image_y = 240 * data->map.zoom;
-	data->map.zoom_x = data->map.image_x/(data->map.x_max - data->map.x_min);
-	data->map.zoom_y = data->map.image_y/(data->map.y_max - data->map.y_min);
-	printf("ZoomIn : %f\n", data->map.scale);
+	data->x1 = (x / data->zoom + data->x1) - (x / (data->zoom * 1.3));
+	data->y1 = (y / data->zoom + data->y1) - (y / (data->zoom * 1.3));
+	data->zoom *= 1.3;
 }
 
-void zoomout(t_data *data)
+void zoomout(t_data *data, int x, int y)
 {
-	data->map.scale -= 0.5;
-	data->map.x_min -= 0.05;
-	data->map.x_max += 0.05;
-	data->map.y_min -= 0.05;
-	data->map.y_max += 0.05;
-	//data->map.image_x = 270 * data->map.zoom;
-	//data->map.image_y = 240 * data->map.zoom;
-	data->map.zoom_x = data->map.image_x/(data->map.x_max - data->map.x_min);
-	data->map.zoom_y = data->map.image_y/(data->map.y_max - data->map.y_min);
-	printf("ZoomOut %f\n", data->map.scale);
+	data->x1 = (x / data->zoom + data->x1)  - (x / (data->zoom / 1.3));
+	data->y1 = (y / data->zoom + data->y1) - (y / (data->zoom / 1.3));
+	data->zoom /= 1.3;
 }
 
 void scalein(t_data *data)
 {
-	data->map.scale += 1;
-	printf("Scale : %f\n", data->map.scale);
+	data->scale += 5;
 }
 
 void scaleout(t_data *data)
 {
-	data->map.scale -= 1;
-	printf("Scale : %f\n", data->map.scale);
+	data->scale -= 5;
 }
 
-void offset(t_data *data)
+int	mouse_hook(int mousecode, int x, int y, t_data *data)
 {
-	
+	if (mousecode == 4 || mousecode == 1)
+		zoomout(data, x, y);
+	else if (mousecode == 5 || mousecode == 2)
+		zoomin(data, x, y);
+	scene_manager(data);
+	return (0);
 }

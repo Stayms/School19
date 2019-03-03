@@ -12,20 +12,33 @@
 
 #include "fractol.h"
 
+void set_value_mandelbrot(t_data *data)
+{
+	data->scale = 150;
+	data->x1 = -2.05;
+	data->y1 = -1.3;
+	data->zoom = 200;
+	data->color = 0;
+}
+
+void set_value_julia(t_data *data)
+{
+	data->scale = 80;
+	data->x1 = -2.0;
+	data->y1 = -1.9;
+	data->zoom = 200;
+	data->color = 0;
+}
+
 void scene_manager(t_data *data)
 {
-	void	*img_ptr;
-	int		*image;
-	int 	bits_per_pixel;
-	int 	size_line;
-	int 	endian;
-
-	img_ptr = mlx_new_image(data->mlx_ptr, SCREENSIZE, SCREENSIZE);
-	data->map.map = (int*)mlx_get_data_addr(img_ptr, &bits_per_pixel, &size_line, &endian);
-
-	// Modification de l'image
-	draw_mandelbrot(data);
-
-	// Put de l'image dans la fenetre
-	mlx_put_image_to_window (data->mlx_ptr, data->win_ptr, img_ptr, 0, 0);
+	if(data->id == 1)
+	{
+		draw_mandelbrot(data);
+	}
+	else if(data->id == 2)
+	{
+		draw_julia(data);
+	}
+	mlx_put_image_to_window (data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 }

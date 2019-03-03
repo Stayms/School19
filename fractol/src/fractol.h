@@ -13,8 +13,8 @@
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define SCREENSIZE 1000
-# define PADDINGX 0
+# define SCREENSIZE 600
+# define PADDINGX 100
 # define PADDINGY 0
 # include "../minilibx_macos/mlx.h"
 # include "../get_next_line/get_next_line.h"
@@ -32,41 +32,36 @@ typedef struct 		s_complex
 	double	i;			
 }					t_complex;
 
-typedef struct		s_map
-{
-	int		*map;
-	int		offset_x;
-	int		offset_y;
-	double	scale;
-	double	x_min;
-	double	x_max;
-	double	y_min;
-	double	y_max;
-	int		image_x;
-	int		image_y;
-	double	zoom_x;
-	double	zoom_y;
-	double	color;
-	double	quality;
-}					t_map;
-
 typedef struct		s_data
 {
 	int		id;
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_map	map;
+	void	*img;
+	int		*img_ptr;
+	int		endian;
+	int		sl;
+	int		bpp;
+	double	scale;
+	int		x;
+	int		y;
+	double	x1;
+	double	y1;
+	double	zoom;
+	double	color;
 }					t_data;
 
-int draw_line(int x0, int y0, int x1, int y1, int *image);
 void scene_manager(t_data *data);
 void draw_mandelbrot(t_data *data);
+void draw_julia(t_data *data);
 int draw_point(int x, int y, t_data *data, int color);
-void zoomin(t_data *data);
-void zoomout(t_data *data);
+void zoomin(t_data *data, int x, int y);
+void zoomout(t_data *data, int x, int y);
 void scalein(t_data *data);
 void scaleout(t_data *data);
 void move(t_data *data, int key);
-void quality_change(t_data *data);
+int	mouse_hook(int mousecode, int x, int y, t_data *data);
+void set_value_mandelbrot(t_data *data);
+void set_value_julia(t_data *data);
 
 #endif
