@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zoom.c                                             :+:      :+:    :+:   */
+/*   binding.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbouchez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,31 +12,31 @@
 
 #include "fractol.h"
 
-void zoomin(t_data *data, int x, int y)
+void	zoomin(t_data *data, int x, int y)
 {
 	data->x1 = (x / data->zoom + data->x1) - (x / (data->zoom * 1.3));
 	data->y1 = (y / data->zoom + data->y1) - (y / (data->zoom * 1.3));
 	data->zoom *= 1.3;
 }
 
-void zoomout(t_data *data, int x, int y)
+void	zoomout(t_data *data, int x, int y)
 {
-	data->x1 = (x / data->zoom + data->x1)  - (x / (data->zoom / 1.3));
+	data->x1 = (x / data->zoom + data->x1) - (x / (data->zoom / 1.3));
 	data->y1 = (y / data->zoom + data->y1) - (y / (data->zoom / 1.3));
 	data->zoom /= 1.3;
 }
 
-void scalein(t_data *data)
+void	scalein(t_data *data)
 {
 	data->scale += 5;
 }
 
-void scaleout(t_data *data)
+void	scaleout(t_data *data)
 {
 	data->scale -= 5;
 }
 
-int	mouse_hook(int mousecode, int x, int y, t_data *data)
+int		mouse_hook(int mousecode, int x, int y, t_data *data)
 {
 	if (mousecode == 4 || mousecode == 1)
 		zoomout(data, x, y);

@@ -12,35 +12,49 @@
 
 #include "../fractol.h"
 
-void draw_julia(t_data *data)
+int		julia_mouse(int x, int y, t_data *data)
 {
-	t_complex c;
-	t_complex z;
+	if (data->id == 2 && data->julia_mouse == 1)
+	{
+		data->c.r = x * 2;
+		data->c.i = y * 2 - 800;
+		scene_manager(data);
+	}
+	return (0);
+}
+
+void	draw_julia2(t_data *data, int i)
+{
+	double	tmp;
+
+	data->z.r = data->x / data->zoom + data->x1;
+	data->z.i = data->y / data->zoom + data->y1;
+	i = 0;
+	while (data->z.r * data->z.r + data->z.i * data->z.i < 4 && i < data->scale)
+	{
+		tmp = data->z.r;
+		data->z.r = data->z.r * data->z.r -
+		data->z.i * data->z.i - 0.8 + (data->c.r / SCREENSIZE);
+		data->z.i = 2 * data->z.i * tmp + data->c.i / SCREENSIZE;
+		i++;
+	}
+	if (i == data->scale)
+		draw_point(data->x, data->y, data, 0);
+	else
+		draw_point(data->x, data->y, data, i * 255);
+}
+
+void	draw_julia(t_data *data)
+{
 	int i;
-	double tmp;
 
 	data->x = 0;
-	while(data->x < SCREENSIZE)
+	while (data->x < SCREENSIZE)
 	{
 		data->y = 0;
-		while(data->y < SCREENSIZE)
+		while (data->y < SCREENSIZE)
 		{
-			c.r = data->x / data->zoom + data->x1;
-			c.i = data->y / data->zoom + data->y1;
-			z.r = 0;
-			z.i = 0;
-			i = 0;
-			while(z.r * z.r + z.i * z.i < 4 && i < data->scale)
-			{
-				tmp = z.r;
-				z.r = z.r * z.r - z.i * z.i + c.r;
-				z.i = 2 * z.i * tmp + c.i;
-				i++;
-			}
-			if(i == data->scale)
-				draw_point(data->x, data->y, data, 0);
-			else
-				draw_point(data->x, data->y, data, i * 255 /data->scale);
+			draw_julia2(data, i);
 			data->y++;
 		}
 		data->x++;

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbouchez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,7 +9,6 @@
 /*   Updated: 2018/11/20 22:35:28 by nbouchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
@@ -25,43 +24,47 @@
 # include <math.h>
 # define HOME_COLOR 100
 
-
-typedef struct 		s_complex
+typedef struct		s_complex
 {
 	double	r;
-	double	i;			
+	double	i;
 }					t_complex;
 
 typedef struct		s_data
 {
-	int		id;
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img;
-	int		*img_ptr;
-	int		endian;
-	int		sl;
-	int		bpp;
-	double	scale;
-	int		x;
-	int		y;
-	double	x1;
-	double	y1;
-	double	zoom;
-	double	color;
+	int			id;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*img;
+	int			*img_ptr;
+	int			endian;
+	int			sl;
+	int			bpp;
+	double		scale;
+	int			x;
+	int			y;
+	double		x1;
+	double		y1;
+	double		zoom;
+	t_complex	c;
+	t_complex	z;
+	double		color;
+	int			julia_mouse;
 }					t_data;
 
-void scene_manager(t_data *data);
-void draw_mandelbrot(t_data *data);
-void draw_julia(t_data *data);
-int draw_point(int x, int y, t_data *data, int color);
-void zoomin(t_data *data, int x, int y);
-void zoomout(t_data *data, int x, int y);
-void scalein(t_data *data);
-void scaleout(t_data *data);
-void move(t_data *data, int key);
-int	mouse_hook(int mousecode, int x, int y, t_data *data);
-void set_value_mandelbrot(t_data *data);
-void set_value_julia(t_data *data);
+void				scene_manager(t_data *data);
+void				draw_mandelbrot(t_data *data);
+void				draw_julia(t_data *data);
+int					draw_point(int x, int y, t_data *data, int color);
+void				zoomin(t_data *data, int x, int y);
+void				zoomout(t_data *data, int x, int y);
+void				scalein(t_data *data);
+void				scaleout(t_data *data);
+void				move(t_data *data, int key);
+int					mouse_hook(int mousecode, int x, int y, t_data *data);
+void				set_value_mandelbrot(t_data *data);
+void				set_value_julia(t_data *data);
+int					julia_mouse(int x, int y, t_data *data);
+void				tools(t_data *data, int key);
 
 #endif

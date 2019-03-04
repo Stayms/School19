@@ -12,22 +12,30 @@
 
 #include "fractol.h"
 
-void move(t_data *data, int key)
+void	move(t_data *data, int key)
 {
-	if(key == 123) // Gauche
+	if (key == 123)
 	{
 		data->x1 -= 30 / data->zoom;
 	}
-	else if(key == 124) // Droite
+	else if (key == 124)
 	{
 		data->x1 += 30 / data->zoom;
 	}
-	else if(key == 126) // Haut
+	else if (key == 126)
 	{
 		data->y1 -= 30 / data->zoom;
 	}
-	else if(key == 125) // Bas
+	else if (key == 125)
 	{
 		data->y1 += 30 / data->zoom;
+	}
+}
+
+void	tools(t_data *data, int key)
+{
+	if (key == 37)
+	{
+		data->julia_mouse = !data->julia_mouse;
 	}
 }
