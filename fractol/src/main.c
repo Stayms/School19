@@ -38,6 +38,11 @@ void	mlx_init_windows(t_data *data, char **av)
 		data->id = 2;
 		set_value_julia(data);
 	}
+	else if (!ft_strcmp(av[1], "Burningship"))
+	{
+		data->id = 3;
+		set_value_burningship(data);
+	}
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, SCREENSIZE,
 		SCREENSIZE, "Fractol School 19");
@@ -53,7 +58,8 @@ int		main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		if (!ft_strcmp(av[1], "Mandelbrot") || !ft_strcmp(av[1], "Julia"))
+		if (!ft_strcmp(av[1], "Mandelbrot") || !ft_strcmp(av[1], "Julia")
+		|| !ft_strcmp(av[1], "Burningship"))
 		{
 			mlx_init_windows(&data, av);
 			scene_manager(&data);
@@ -65,7 +71,7 @@ int		main(int ac, char **av)
 		else
 		{
 			write(1, "Usage : ./fractol [fractol name]\n", 33);
-			write(1, "\tName available : Mandelbrot\n", 28);
+			write(1, "\tName available : Mandelbrot, Julia, Burningship\n", 28);
 		}
 	}
 	else

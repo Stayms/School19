@@ -54,6 +54,7 @@ typedef struct		s_data
 
 void				scene_manager(t_data *data);
 void				draw_mandelbrot(t_data *data);
+void				draw_burningship(t_data *data);
 void				draw_julia(t_data *data);
 int					draw_point(int x, int y, t_data *data, int color);
 void				zoomin(t_data *data, int x, int y);
@@ -64,6 +65,7 @@ void				move(t_data *data, int key);
 int					mouse_hook(int mousecode, int x, int y, t_data *data);
 void				set_value_mandelbrot(t_data *data);
 void				set_value_julia(t_data *data);
+void				set_value_burningship(t_data *data);
 int					julia_mouse(int x, int y, t_data *data);
 void				tools(t_data *data, int key);
 

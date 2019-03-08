@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Mandelbrot.c                                       :+:      :+:    :+:   */
+/*   draw_bruningship.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbouchez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../fractol.h"
 
-void	draw_mandelbrot2(t_data *data, t_complex c, t_complex z, int i)
+void	draw_burningship_2(t_data *data, t_complex c, t_complex z, int i)
 {
 	double		tmp;
 
@@ -23,9 +23,9 @@ void	draw_mandelbrot2(t_data *data, t_complex c, t_complex z, int i)
 	i = 0;
 	while (z.r * z.r + z.i * z.i < 4 && i < data->scale)
 	{
-		tmp = z.r;
-		z.r = z.r * z.r - z.i * z.i + c.r;
-		z.i = 2 * z.i * tmp + c.i;
+		tmp = z.r * z.r - z.i * z.i + c.r;
+		z.i = fabs(2 * z.r * z.i) + c.i;
+		z.r = tmp;
 		i++;
 	}
 	if (i == data->scale)
@@ -34,7 +34,7 @@ void	draw_mandelbrot2(t_data *data, t_complex c, t_complex z, int i)
 		draw_point(data->x, data->y, data, i * 255655 / data->scale);
 }
 
-void	draw_mandelbrot(t_data *data)
+void	draw_burningship(t_data *data)
 {
 	t_complex	c;
 	t_complex	z;
@@ -46,7 +46,7 @@ void	draw_mandelbrot(t_data *data)
 		data->y = 0;
 		while (data->y < SCREENSIZE)
 		{
-			draw_mandelbrot2(data, c, z, i);
+			draw_burningship_2(data, c, z, i);
 			data->y++;
 		}
 		data->x++;

@@ -33,11 +33,22 @@ void	set_value_julia(t_data *data)
 	data->julia_mouse = 1;
 }
 
+void	set_value_burningship(t_data *data)
+{
+	data->scale = 80;
+	data->x1 = -2.5;
+	data->y1 = -1.0;
+	data->zoom = 200;
+	data->color = 255;
+}
+
 void	scene_manager(t_data *data)
 {
 	if (data->id == 1)
 		draw_mandelbrot(data);
 	else if (data->id == 2)
 		draw_julia(data);
+	else if (data->id == 3)
+		draw_burningship(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 }
