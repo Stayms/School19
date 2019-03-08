@@ -1,0 +1,3 @@
+Lancer un traceroute sur un serveur.
+Premiere ligne : Adresse local
+Deuxieme ligne : Le NAT utiliser sur le reseau local pour communiquer avec l'exterieur.

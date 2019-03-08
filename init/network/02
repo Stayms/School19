@@ -1,0 +1,2 @@
+a) ifconfig en0 | grep broadcast | awk '{print $6}'
+b) arp -a
