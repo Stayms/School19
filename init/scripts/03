@@ -1,12 +1,57 @@
 #!/bin/bash
 echo "-- UNIX Manager --"
-var1=10
-while [ $var1 -gt 5 ] || [ $var1 -lt 0 ]
+var1=100
+while [ $var1 -gt 10 ] || [ $var1 -lt 0 ]
 do
-	echo "1. Liste des interfaces reseau"
+	echo "----------------------"
+	echo "RESEAU"
+	echo "1. Renommer votre systeme"
+	echo "2. Etat du service SSH"
+	echo "3. Redemarrer le service SSH"
+	echo "4. PID du serveur SSH"
+	echo "5. Partition des disques"
+	echo "6. Liste des processus en cours"
+	echo "----------------------"
+	echo "PACKAGES"
+	echo "7. Lister les packages installe"
+	echo "8. Installe un packages"
 	read -p 'Choix : ' var1
 done
 if [ $var1 = 1 ]
 then
-	sudo ifconfig
+	read -p 'Nouveau nom : ' systemname
+	bash ../system/02 $systemname
+fi
+if [ $var1 = 2 ]
+then
+	bash ../system/05
+fi
+if [ $var1 = 3 ]
+then
+	bash ../system/06
+fi
+if [ $var1 = 4 ]
+then
+	echo "-- PID --" 
+	bash ../system/07
+fi
+if [ $var1 = 5 ]
+then
+	echo "-- Partition du disque --"
+	bash ../system/10
+fi
+if [ $var1 = 6 ]
+then
+	echo "-- Processus en cours --"
+	bash ../system/13
+fi
+if [ $var1 = 7 ]
+then
+	echo "-- Packages --"
+	bash ../system/24 | awk -F'/' '{print $1}'
+fi
+if [ $var1 = 8 ]
+then
+	read -p 'Nom du package : ' packagename
+	sudo apt-get install -y $packagename
 fi

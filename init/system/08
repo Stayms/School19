@@ -1,0 +1,2 @@
+Les fichiers d'autorisation se trouvent dans le fichier ~/.ssh/authorized_keys
+le fichier ne se trouve pas au meme endroit pour tous les users

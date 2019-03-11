@@ -1,1 +1,1 @@
-adduser <name>
+adduser $name

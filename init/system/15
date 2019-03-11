@@ -1,1 +1,1 @@
-kill <PID>
+kill $PID

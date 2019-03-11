@@ -1,7 +1,7 @@
 #!/bin/bash
-echo "-- Manager user --"
+echo "-- Supprimer un utilisateur --"
 read -p 'Entrez le nom de l utilisateur : ' USER
-read -p 'Valider ? [y/n] : ' AAA
+read -p 'Valider la suppression? [y/n] : ' AAA
 if [ $AAA = "y" ]
 then
 	pgrep -u $USER | while read PID; do sudo kill $PID; done
@@ -9,4 +9,4 @@ then
 else
 	echo "Aucun utilisateur n'a ete supprime."
 fi
-echo "-- Manager user --"
+echo "-- Supprimer un utilisateur --"
