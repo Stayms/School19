@@ -1,0 +1,12 @@
+#!/bin/bash
+echo "-- UNIX Manager --"
+var1=10
+while [ $var1 -gt 5 ] || [ $var1 -lt 0 ]
+do
+	echo "1. Liste des interfaces reseau"
+	read -p 'Choix : ' var1
+done
+if [ $var1 = 1 ]
+then
+	sudo ifconfig
+fi
