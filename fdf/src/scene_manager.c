@@ -10,23 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fractol.h"
 
-void scene_manager(void *mlx_ptr, void *win_ptr, int *map, int x, int y)
+void	set_value_mandelbrot(t_data *data)
 {
-	void	*img_ptr;
-	int		*image;
-	int 	bits_per_pixel;
-	int 	size_line;
-	int 	endian;
+	data->scale = 150;
+	data->x1 = -2.05;
+	data->y1 = -1.3;
+	data->zoom = 200;
+	data->color = 255;
+}
 
-	img_ptr = mlx_new_image (mlx_ptr, (SCREENSIZE/4)*3, SCREENSIZE);
-	//color_img(img_ptr, (SCREENSIZE/4)*3, SCREENSIZE , 10);
+void	set_value_julia(t_data *data)
+{
+	data->scale = 80;
+	data->x1 = -2.0;
+	data->y1 = -1.9;
+	data->zoom = 200;
+	data->color = 255;
+	data->c.r = 0.285;
+	data->c.i = 0.01;
+	data->julia_mouse = 1;
+}
 
-	image = (int*)mlx_get_data_addr(img_ptr, &bits_per_pixel, &size_line, &endian);
-
-	draw_iso(map, image, x, y);
-	mlx_put_image_to_window (mlx_ptr, win_ptr, img_ptr, 0, 0);
-
-
+void	scene_manager(t_data *data)
+{
+	if (data->id == 1)
+		draw_mandelbrot(data);
+	else if (data->id == 2)
+		draw_julia(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 }

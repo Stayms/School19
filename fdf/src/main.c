@@ -10,29 +10,65 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fractol.h"
 
-int	main(int ac, char **av)
+int		deal_key(int key, t_data *param)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr;
-	int		*map;
-	int		x;
-	int		y;
+	if (key == 75)
+		scaleout(param);
+	else if (key == 67)
+		scalein(param);
+	else if (key == 123 || key == 126 || key == 125 || key == 124)
+		move(param, key);
+	else
+		tools(param, key);
+	scene_manager(param);
+	return (0);
+}
+
+void	mlx_init_windows(t_data *data, char **av)
+{
+	if (!ft_strcmp(av[1], "Mandelbrot"))
+	{
+		data->id = 1;
+		set_value_mandelbrot(data);
+	}
+	else if (!ft_strcmp(av[1], "Julia"))
+	{
+		data->id = 2;
+		set_value_julia(data);
+	}
+	data->mlx_ptr = mlx_init();
+	data->win_ptr = mlx_new_window(data->mlx_ptr, SCREENSIZE,
+		SCREENSIZE, "Fractol School 19");
+	data->img = mlx_new_image(data->mlx_ptr,
+		SCREENSIZE, SCREENSIZE);
+	data->img_ptr = (int*)mlx_get_data_addr(data->img,
+		&data->bpp, &data->sl, &data->endian);
+}
+
+int		main(int ac, char **av)
+{
+	t_data	data;
 
 	if (ac == 2)
 	{
-		if (!(map = reader(av[1], &x, &y)))
-			return (-1);
-	}
+		if (!ft_strcmp(av[1], "Mandelbrot") || !ft_strcmp(av[1], "Julia"))
+		{
+			mlx_init_windows(&data, av);
+			scene_manager(&data);
+			mlx_hook(data.win_ptr, 6, 1L < 6, julia_mouse, &data);
+			mlx_key_hook(data.win_ptr, deal_key, (void *)&data);
+			mlx_mouse_hook(data.win_ptr, mouse_hook, &data);
+			mlx_loop(data.mlx_ptr);
+		}
 		else
-			return (-1);
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, SCREENSIZE, SCREENSIZE, "FdF School 19");
-	menu_manager(mlx_ptr, win_ptr);
-	scene_manager(mlx_ptr, win_ptr, map, x, y);
-	//mlx_put_image_to_window (mlx_ptr, win_ptr, img_ptr, 0, 0);
-	mlx_loop(mlx_ptr);
+		{
+			write(1, "Usage : ./fractol [fractol name]\n", 33);
+			write(1, "\tName available : Mandelbrot\n", 28);
+		}
+	}
+	else
+		write(1, "Usage : ./fractol [fractol name]\n", 33);
 	return (0);
 }
