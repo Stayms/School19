@@ -71,7 +71,7 @@ int		main(int ac, char **av)
 		else
 		{
 			write(1, "Usage : ./fractol [fractol name]\n", 33);
-			write(1, "\tName available : Mandelbrot, Julia, Burningship\n", 28);
+			write(1, "\tName available : Mandelbrot, Julia, Burningship\n", 49);
 		}
 	}
 	else

@@ -45,3 +45,5 @@ fclean : clean
 	@echo "\033[1;36m$(NAME) --> Fclean --> \033[1;32m OK\033[0;37m"
 
 re : fclean all
+
+.PHONY: $(NAME) all clean fclean re

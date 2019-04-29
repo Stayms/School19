@@ -46,7 +46,7 @@ typedef struct	glsl_info_s
   GLint		loc_font_color;
   GLint		loc_font_posinwin;
   GLint		loc_font_posinatlas;
-  GLint		loc_font_atlassize;
+  GLint		loc_font_atlaSSI;
 } glsl_info_t;
 
 

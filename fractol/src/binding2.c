@@ -38,4 +38,6 @@ void	tools(t_data *data, int key)
 	{
 		data->julia_mouse = !data->julia_mouse;
 	}
+	if (key == 53)
+		exit(EXIT_SUCCESS);
 }

@@ -451,7 +451,7 @@ int get_mouse_button(NSEventType eventtype)
   glsl.loc_font_color = glGetUniformLocation(glsl.font_program, "color");
   glsl.loc_font_posinwin = glGetUniformLocation(glsl.font_program, "fontposinwin");
   glsl.loc_font_posinatlas = glGetUniformLocation(glsl.font_program, "fontposinatlas");
-  glsl.loc_font_atlassize = glGetUniformLocation(glsl.font_program, "fontatlassize");
+  glsl.loc_font_atlaSSI = glGetUniformLocation(glsl.font_program, "fontatlaSSI");
   glsl.loc_font_winhalfsize = glGetUniformLocation(glsl.font_program, "winhalfsize");
   glsl.loc_font_position = glGetAttribLocation(glsl.font_program, "position");
   //      printf("err? 0x%x\n", glGetError());
@@ -588,7 +588,7 @@ int get_mouse_button(NSEventType eventtype)
   glUniform2f(glsl.loc_font_winhalfsize, size_x/2, size_y/2);
   glUniform2f(glsl.loc_font_posinwin, x, size_y - 1 - y);
   glUniform2f(glsl.loc_font_posinatlas, gx, gy);
-  glUniform2f(glsl.loc_font_atlassize, img->width, img->height);
+  glUniform2f(glsl.loc_font_atlaSSI, img->width, img->height);
 
   glBindBuffer(GL_ARRAY_BUFFER, imgctx->vbuffer);
   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2*sizeof(GLfloat), (void*)0);
